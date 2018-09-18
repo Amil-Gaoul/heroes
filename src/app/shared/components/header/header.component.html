@@ -1,0 +1,15 @@
+<header class="header">
+    <nav>
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <a class="header-button" mat-button routerLink="/" routerLinkActive="true">Home</a>
+                <a class="header-button" mat-button routerLink="heroes" routerLinkActive="true">Heroes list</a>
+                <div class="flex-spacer"></div>
+                <app-autocomplete-field *ngIf="autoCompleteOptions" [options]="autoCompleteOptions"></app-autocomplete-field>
+                <a class="header-link" href="https://github.com" target="_blank">
+                    <img src="assets/images/github-circle-white-transparent.svg">
+                </a>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </nav>
+</header>

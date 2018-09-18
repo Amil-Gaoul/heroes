@@ -1,0 +1,14 @@
+<div [formGroup]="form" class="input-field">
+    <mat-form-field class="input-field__container">
+        <input
+            matInput
+            [id]="model.id"
+            [type]="model.type"
+            [placeholder]="model.placeholder"
+            [formControlName]="model.controlName"
+            [(ngModel)]="model.value">
+        <mat-error *ngIf="control.invalid && (control.dirty || control.touched)">
+            {{ model.placeholder }} is required
+        </mat-error>
+    </mat-form-field>
+</div>

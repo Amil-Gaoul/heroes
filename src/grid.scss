@@ -1,0 +1,43 @@
+.grid {
+    width: 1248px;
+    margin: 0 auto;
+}
+
+.row {
+    width: 100%;
+    max-width: 100%;
+    &:before,
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+.col {
+    padding-left: 20px;
+    padding-right: 20px;
+    min-height: 1px;
+    float: left;
+}
+
+@for $i from 1 through 12 {
+    .col-#{$i} {
+        @if $i < 12 {
+            width: 8.33333% * $i;
+        } @else if $i == 12 {
+            width: 100%;
+        }
+    }
+}
+
+@media(max-width: 1280px) {
+    .grid {
+        width: 980px;
+    }
+
+    .col {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+}

@@ -1,0 +1,39 @@
+.heroes-list__item {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.heroes-list__row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.hero-list__like {
+    align-items: center;
+    display: flex;
+}
+
+.hero-list__icon {
+    cursor: pointer;
+}
+
+.hero-list__icon_red {
+    color: #dc143c;
+}
+
+.heroes-list__row {
+    img {
+        cursor: pointer;
+    }
+}
+
+.mat-list-text {
+    cursor: pointer;
+}

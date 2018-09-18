@@ -1,0 +1,39 @@
+<mat-card class="hero-card">
+    <mat-card-header>
+        <div
+            mat-card-avatar
+            class="hero-card__image"
+            [ngStyle]="{ 'background-image': 'url(assets/images/heroes/' + model.id + '-thumbnail.jpg)' }"
+        ></div>
+        <mat-card-title>{{ model.name }}</mat-card-title>
+        <mat-card-subtitle>{{ model.alterEgo }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="'assets/images/heroes/' + model.id + '.jpg'" alt="Photo of a {{ model.name }}">
+    <mat-card-content>
+        <div class="hero-card__text">
+            {{ model.synopsis | truncateText : str }}
+            <label
+                *ngIf="model.synopsis.length >= str"
+                (click)="showMoreText()"
+                class="hero-card__show-more">{{ showMoreBtnText }}
+            </label>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="hero-card__actions">
+            {{ model.likes }}
+            <mat-icon matTooltip="{{ (canVote ? 'Can vote :)' : 'Cannot vote :(') }}"
+                [matTooltipPosition]="'above'"
+                class="hero-card__icon hero-card__icon_red"
+                (click)="like()">favorite
+            </mat-icon>
+        </div>
+        <div class="hero-card__tags" *ngIf="model.tags && colorType">
+            <app-tags-list
+                [tags]="model.tags"
+                [colorType]="colorType.accent"
+                (emitTag)="setTag($event)">
+            </app-tags-list>
+        </div>
+    </mat-card-actions>
+</mat-card>

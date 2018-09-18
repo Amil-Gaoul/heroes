@@ -1,0 +1,27 @@
+.hero-card__image {
+    background-size: cover;
+}
+
+.hero-card__icon {
+    cursor: pointer;
+}
+
+.hero-card__icon_red {
+    color: #dc143c;
+}
+
+.hero-card__show-more {
+    display: inline-block;
+    padding-top: 0.3125rem;
+    cursor: pointer;
+    color: #3366BB;
+    &:hover {
+        color: #0B0080;
+    }
+}
+
+.hero-card__actions {
+    align-items: center;
+    display: flex;
+    padding: 0 1rem 1rem;
+}

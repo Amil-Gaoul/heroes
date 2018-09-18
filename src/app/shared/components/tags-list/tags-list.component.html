@@ -1,0 +1,15 @@
+<div class="tags-list">
+    <mat-chip-list #chipList>
+        <mat-chip
+            *ngFor="let tag of tags"
+            class="tags-list__tag"
+            [selectable]="selectable"
+            [removable]="removable"
+            [color]="colors[colorType]"
+            (click)="setTag(tag)"
+            (removed)="remove(tag)">
+                {{ tag }}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+    </mat-chip-list>
+</div>

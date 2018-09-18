@@ -1,0 +1,12 @@
+<div class="create-hero">
+    <h3 class="create-hero__title title title_center">Create Hero</h3>
+    <form [formGroup]="formGroup">
+        <div class="create-hero__input" *ngFor="let input of inputs">
+            <app-input-field [model]="input" [form]="formGroup"></app-input-field>
+        </div>
+        <div class="create-hero__tags">
+            <app-add-tag-hero class="create-hero__filter-tags" *ngIf="tags" (emitTags)="addTag($event)" [allTags]="tags"></app-add-tag-hero>
+        </div>
+        <app-button [text]="'Create'" [isDisabled]="!formGroup.valid" (emitClick)="createHero()"></app-button>
+    </form>
+</div>

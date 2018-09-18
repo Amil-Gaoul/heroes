@@ -1,1 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~material-design-icons/iconfont/material-icons.css';
+@import '~normalize.css/normalize.css';
+@import 'grid.scss';
+
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.title {
+    font-weight: 500;
+    color: gray;
+}
+
+.title_center {
+    text-align: center;
+}
+
+// TODO Material styles
+.mat-toolbar-row {
+    height: 5rem !important;
+}
+
+.mat-list .mat-list-item {
+    height: inherit !important;
+}
+
+.mat-list-avatar {
+    width: 55px !important;
+    height: 55px !important;
+}
+
+.mat-list-text {
+    padding-left: 16px !important;
+}
+
+.mat-chip {
+    margin: 4px !important;
+}
+
+#searchInput {
+    .mat-form-field-underline {
+        background-color: white !important;
+    }
+
+    .mat-form-field-label {
+        font-weight: 400;
+        color: white !important;
+    }
+}

@@ -1,0 +1,14 @@
+<div class="dashboard">
+    <div class="grid">
+        <div class="row">
+            <div class="col col-12">
+                <h3 class="dashboard__title">Top heroes</h3>
+            </div>
+        </div>
+        <div class="row dashboard__row" *ngFor="let heroes of customHeroes">
+            <div class="col col-4" *ngFor="let hero of heroes">
+                <app-hero-card [model]="hero"></app-hero-card>
+            </div>
+        </div>
+    </div>
+</div>
