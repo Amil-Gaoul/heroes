@@ -10,6 +10,11 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+html,
+body {
+    height: 100%;
+}
+
 .title {
     font-weight: 500;
     color: gray;

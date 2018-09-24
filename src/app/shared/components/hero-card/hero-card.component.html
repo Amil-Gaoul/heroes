@@ -28,9 +28,10 @@
                 (click)="like()">favorite
             </mat-icon>
         </div>
-        <div class="hero-card__tags" *ngIf="model.tags && colorType">
+        <div class="hero-card__tags" *ngIf="model.tagIds && tags && colorType">
             <app-tags-list
-                [tags]="model.tags"
+                [tagIds]="model.tagIds"
+                [tags]="tags"
                 [colorType]="colorType.accent"
                 (emitTag)="setTag($event)">
             </app-tags-list>

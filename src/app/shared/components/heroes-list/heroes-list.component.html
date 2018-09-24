@@ -1,10 +1,10 @@
 <div class="heroes-list">
     <h3 class="heroes-list__title title title_center">Heroes List</h3>
     <mat-list>
-        <mat-list-item *ngFor="let hero of model">
+        <mat-list-item *ngFor="let hero of (model | tagsFilter : tagsIds : 'tagIds')">
             <div class="heroes-list__item">
                 <div class="heroes-list__row">
-                    <img mat-list-avatar (click)="shoHeroDetail(hero)" src="assets/images/heroes/{{ hero.id }}-thumbnail.jpg">
+                    <img mat-list-avatar (click)="shoHeroDetail(hero)" [src]="hero.avatar">
                     <div class="mat-list-text" (click)="shoHeroDetail(hero)">
                         <h4 mat-line>{{ hero.name }}</h4>
                         <p mat-line>
@@ -12,7 +12,7 @@
                         </p>
                     </div>
                     <div class="hero-list__like">
-                        {{ hero.likes | number:'.0' }}
+                        {{ hero.likes | number : '.0' }}
                         <mat-icon matTooltip="{{ (canVote ? 'Can vote :)' : 'Cannot vote :(') }}"
                             [matTooltipPosition]="'above'"
                             class="hero-list__icon hero-list__icon_red"
@@ -21,8 +21,13 @@
                     </div>
                 </div>
                 <div class="heroes-list__row">
-                    <div class="hero-list__tags" *ngIf="hero.tags">
-                        <app-tags-list [tags]="hero.tags" (emitTag)="setTag($event)"></app-tags-list>
+                    <div class="hero-list__tags" *ngIf="hero.tagIds">
+                        <app-tags-list
+                            *ngIf="hero.tagIds && tags"
+                            [tagIds]="hero.tagIds"
+                            [tags]="tags"
+                            (emitTag)="setTag($event)">
+                        </app-tags-list>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,14 @@
             <app-input-field [model]="input" [form]="formGroup"></app-input-field>
         </div>
         <div class="create-hero__tags">
-            <app-add-tag-hero class="create-hero__filter-tags" *ngIf="tags" (emitTags)="addTag($event)" [allTags]="tags"></app-add-tag-hero>
+            <app-add-tag-hero
+                class="create-hero__filter-tags"
+                *ngIf="tags"
+                (emitTags)="addTagsForHero($event)"
+                (emitTag)="createNewTag($event)"
+                (removeNewTag)="removeNewTag($event)"
+                [allTags]="tags">
+            </app-add-tag-hero>
         </div>
         <app-button [text]="'Create'" [isDisabled]="!formGroup.valid" (emitClick)="createHero()"></app-button>
     </form>
