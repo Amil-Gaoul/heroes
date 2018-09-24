@@ -1,20 +1,22 @@
 import { TagsService } from './../../core/services/tags/tags.service';
 import { Hero } from './../../shared/models/hero.model';
 import { HeroesService } from './../../core/services/heroes/heroes.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
+import { Tag } from '../../shared/models/tag.model';
 
 @Component({
   selector: 'app-heroes-list-page',
   templateUrl: './heroes-list-page.component.html',
   styleUrls: ['./heroes-list-page.component.scss']
 })
-export class HeroesListPageComponent implements OnInit {
+export class HeroesListPageComponent implements OnInit, OnDestroy {
 
     heroes: Hero[];
-    tags: string[];
-    tagsFilter: string[] = [];
+    tags: Tag[];
+    tagsFilter: Tag[] = [];
+    tagsIds: number[] = [];
     heroId: number;
 
     private subs: Subscription[] = [];
@@ -25,30 +27,67 @@ export class HeroesListPageComponent implements OnInit {
         this.loadTags();
     }
 
+    ngOnDestroy() {
+        this.subs.forEach(sub => sub.unsubscribe());
+    }
+
     loadHeroes() {
-        this.heroesService.loadHeroes().subscribe(heroes => {
+        this.subs.push(this.heroesService.loadHeroes().subscribe(heroes => {
             if (heroes) {
                 this.heroes = heroes;
                 this.heroId = this.heroes.reduce((prev, current) => (prev.id > current.id) ? prev : current).id;
             }
-        });
+        }));
     }
 
     loadTags() {
-        this.tagsService.loadTags().subscribe(tags => {
+        this.subs.push(this.tagsService.loadTags().subscribe(tags => {
             if (tags) {
                 this.tags = tags;
+                console.log(this.tags);
             }
-        });
+        }));
     }
 
     createHero(hero: Hero) {
         console.log(hero);
+        this.subs.push(this.heroesService.createHero(hero).subscribe(data => {
+            this.loadHeroes();
+        }));
     }
 
     showHeroDetail(heroId: number) {
         console.log(heroId);
         this.router.navigate(['hero', heroId]);
+    }
+
+    addNewTag(tag: Tag) {
+        this.subs.push(this.tagsService.addTag(tag).subscribe(data => {}));
+    }
+
+    like(hero: Hero) {
+        this.subs.push(this.heroesService.editHero(hero).subscribe(data => {
+            this.loadHeroes();
+        }));
+    }
+
+    setFilterTags(tag: Tag) {
+        const tagIndex = this.tagsFilter.indexOf(this.tagsFilter.find(t => t.id === tag.id));
+        if (tagIndex === -1) {
+            this.tagsFilter.push(tag);
+            this.tagsIds.push(tag.id);
+        }
+        console.log(this.tagsIds);
+        console.log(this.tagsFilter);
+    }
+
+    removeFilterTags(tag: Tag) {
+        this.tagsFilter.splice(this.tagsFilter.indexOf(this.tagsFilter.find(t => t.id === tag.id)), 1);
+        this.tagsIds.splice(this.tagsIds.indexOf(this.tagsIds.find(id => id === tag.id)), 1);
+    }
+
+    removeNewTag(tag: Tag) {
+        this.subs.push(this.tagsService.deleteTag(tag).subscribe());
     }
 
 }

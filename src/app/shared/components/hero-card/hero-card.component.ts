@@ -11,6 +11,7 @@ import { Tag } from '../../models/tag.model';
 export class HeroCardComponent implements OnInit {
 
     @Input() model: Hero;
+    @Input() tags: Tag[];
     @Output() emitTag: EventEmitter<Tag> = new EventEmitter<Tag>();
     @Output() emitLike: EventEmitter<Hero> = new EventEmitter<Hero>();
     canVote: boolean;

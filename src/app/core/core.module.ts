@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeroesService } from './services/heroes/heroes.service';
 import { TagsService } from './services/tags/tags.service';
 import { HttpClient } from './services/http-client';
+import { InMemoryWebApiService } from './services/in-memory-web-api/in-memory-web-api.service';
 
 @NgModule({
     imports: [
@@ -12,7 +13,8 @@ import { HttpClient } from './services/http-client';
     providers: [
         HttpClient,
         HeroesService,
-        TagsService
+        TagsService,
+        // InMemoryWebApiService
     ]
 })
 export class CoreModule {

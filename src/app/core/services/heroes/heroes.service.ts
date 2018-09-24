@@ -1,44 +1,53 @@
-import { HttpClient } from './../http-client';
+import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from './../http-client';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { catchError, map, tap } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
 import { Hero } from '../../../shared/models/hero.model';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
 
 @Injectable()
 export class HeroesService {
 
-    private heroesUrl = '/app/api/heroes.json';
+    private heroesUrl = '/api/heroes';
 
     constructor(private http: HttpClient) {
         this.http = http;
     }
 
     loadHeroes(): Observable<Hero[]> {
-        return this.http.get(this.heroesUrl)
-            .map(heroes => heroes.json())
-            .catch((error: Response): any => {
-                return this.handleError;
-            });
+        return this.http.get<Hero[]>(this.heroesUrl)
+            .pipe(
+                tap((heroes: Hero[]) => console.log('fetched heroes')),
+                catchError(this.handleError<Hero[]>('load tags', []))
+            );
     }
 
-    // createHero() {
-    //     return this.http.post()
-    // }
+    createHero(hero: Hero): Observable<Hero> {
+        return this.http.post<Hero>(this.heroesUrl, hero)
+            .pipe(
+                tap((hero: Hero) => console.log('detched hero')),
+                catchError(this.handleError<Hero>('create hero'))
+            );
+    }
 
-    // loadAllHeroes(): Observable<Hero[]> {
-    //     return
-    // }
+    editHero(hero: Hero): Observable<Hero> {
+        return this.http.put<Hero>(this.heroesUrl, hero)
+            .pipe(
+                tap((hero: Hero) => console.log('fetched hero')),
+                catchError(this.handleError<Hero>('edit hero'))
+            );
+    }
 
-    private handleError (error: Response | any) {
-        // In a real world app, you might use a remote logging infrastructure
-        let errMsg: string;
-        if (error instanceof Response) {
-            errMsg = `${error.status} - ${error.statusText || ''}`;
-        } else {
-            errMsg = error.message ? error.message : error.toString();
-        }
-        return Observable.throw(errMsg);
+    private handleError<T> (operation = 'operation', result?: T) {
+        return (error: any): Observable<T> => {
+            // TODO: send the error to remote logging infrastructure
+            console.error(error); // log to console instead
+            // TODO: better job of transforming error for user consumption
+            //   this.log(`${operation} failed: ${error.message}`);
+            // Let the app keep running by returning an empty result.
+            return of(result as T);
+        };
     }
 
 }

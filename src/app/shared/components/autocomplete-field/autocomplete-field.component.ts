@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 
@@ -11,6 +11,7 @@ import { map, startWith } from 'rxjs/operators';
 export class AutocompleteFieldComponent implements OnInit {
 
     @Input() options: string[];
+    @Output() emitHero: EventEmitter<string> = new EventEmitter<string>();
     myControl = new FormControl();
     filteredOptions: Observable<string[]>;
 
@@ -23,6 +24,10 @@ export class AutocompleteFieldComponent implements OnInit {
                 map(value => this.filter(value)
             )
         );
+    }
+
+    navToHero(heroName: string) {
+        this.emitHero.emit(heroName);
     }
 
     private filter(value: string): string[] {

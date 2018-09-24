@@ -17,6 +17,7 @@ import { AddTagHeroComponent } from './components/add-tag-hero/add-tag-hero.comp
 
 import { TruncateTextPipe } from './pipes/truncate-text/truncate-text.pipe';
 import { DatexPipe } from './pipes/datex/datex.pipe';
+import { TagsFilterPipe } from './pipes/tags-filter/tags-filter.pipe';
 
 @NgModule({
     imports: [
@@ -38,7 +39,8 @@ import { DatexPipe } from './pipes/datex/datex.pipe';
         TagsListComponent,
         AddTagHeroComponent,
         TruncateTextPipe,
-        DatexPipe
+        DatexPipe,
+        TagsFilterPipe
     ],
     exports: [
         HeaderComponent,
@@ -52,7 +54,8 @@ import { DatexPipe } from './pipes/datex/datex.pipe';
         TagsListComponent,
         AddTagHeroComponent,
         TruncateTextPipe,
-        DatexPipe
+        DatexPipe,
+        TagsFilterPipe
     ]
 })
 export class SharedModule { }
