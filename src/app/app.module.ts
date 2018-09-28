@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app.routing.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -11,18 +12,10 @@ import { InMemoryWebApiService } from './core/services/in-memory-web-api/in-memo
 import { MaterialAppModule } from './app.material.module';
 
 import { AppComponent } from './app.component';
-import { HeroDetailPageComponent } from './pages/hero-detail-page/hero-detail-page.component';
-import { HeroesListPageComponent } from './pages/heroes-list-page/heroes-list-page.component';
-import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
-import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 
 @NgModule({
     declarations: [
-        AppComponent,
-        HeroesListPageComponent,
-        HeroDetailPageComponent,
-        DashboardPageComponent,
-        NotFoundPageComponent
+        AppComponent
     ],
     imports: [
         BrowserModule,
@@ -30,6 +23,8 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
         MaterialAppModule,
         SharedModule,
         CoreModule,
+        FormsModule,
+        ReactiveFormsModule,
         AppRoutingModule,
         HttpClientModule,
         HttpClientInMemoryWebApiModule.forRoot(

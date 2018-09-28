@@ -1,3 +1,4 @@
+import { FieldType } from './../../models/Enums/field-type.enum';
 import { Tag } from './../../models/tag.model';
 import { InputField } from './../../models/input-field.model';
 import { Hero } from './../../models/hero.model';
@@ -13,15 +14,17 @@ export class CreateHeroComponent implements OnInit {
 
     @Input() tags: Tag[];
     @Input() heroId: number;
+    @Input() hero: Hero;
     @Output() newHero: EventEmitter<Hero> = new EventEmitter<Hero>();
     @Output() emitTag: EventEmitter<Tag> = new EventEmitter<Tag>();
     @Output() emitRemoveNewTag: EventEmitter<Tag> = new EventEmitter<Tag>();
+    inputs: InputField[];
     formGroup: FormGroup;
-    inputs: InputField[] = [];
-    isDisabled: boolean;
     heroTags: Tag[];
+    fieldType: any;
 
     constructor(private formBuilder: FormBuilder) {
+        this.fieldType = FieldType;
         this.formGroup = this.formBuilder.group({
             name: ['', [ Validators.required ]],
             realName: ['', [ Validators.required ]]
@@ -34,8 +37,8 @@ export class CreateHeroComponent implements OnInit {
 
     initInputs() {
         this.inputs = [
-            new InputField( 'name', 'Name', 'name', 'text', null ),
-            new InputField( 'realName', 'Real name', 'realName', 'text', null ),
+            new InputField( 'name', 'Name', 'name', 'text', this.fieldType.input, null ),
+            new InputField( 'realName', 'Real name', 'realName', 'text', this.fieldType.input, null ),
         ];
     }
 

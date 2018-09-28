@@ -1,3 +1,4 @@
+import { FieldType } from './../../shared/models/Enums/field-type.enum';
 import { TagsService } from './../../core/services/tags/tags.service';
 import { Hero } from './../../shared/models/hero.model';
 import { HeroesService } from './../../core/services/heroes/heroes.service';
@@ -18,9 +19,16 @@ export class HeroesListPageComponent implements OnInit, OnDestroy {
     tagsFilter: Tag[] = [];
     tagsIds: number[] = [];
     heroId: number;
+    fieldType: any;
 
     private subs: Subscription[] = [];
-    constructor(private heroesService: HeroesService, private tagsService: TagsService, private router: Router) { }
+    constructor(
+        private heroesService: HeroesService,
+        private tagsService: TagsService,
+        private router: Router
+    ) {
+        this.fieldType = FieldType;
+    }
 
     ngOnInit() {
         this.loadHeroes();

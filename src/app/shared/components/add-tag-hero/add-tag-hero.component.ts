@@ -14,6 +14,7 @@ import { MatAutocompleteSelectedEvent, MatChipInputEvent } from '@angular/materi
 export class AddTagHeroComponent implements OnInit {
 
     @Input() allTags: Tag[];
+    @Input() heroTags: Tag[];
     // Отдаем родителю все выбранные теги
     @Output() emitTags: EventEmitter<Tag[]> = new EventEmitter<Tag[]>();
     // Отдаем родителю тег, которого не было в списке тегов для его добавления в общий список,
@@ -40,6 +41,9 @@ export class AddTagHeroComponent implements OnInit {
 
     ngOnInit() {
         this.findMaxTagId();
+        if (this.heroTags) {
+            this.tags = this.heroTags;
+        }
     }
 
     addTag(event: MatChipInputEvent): void {
@@ -88,6 +92,7 @@ export class AddTagHeroComponent implements OnInit {
             for (let j = 0; j < this.tags.length; j++) {
                 if (this.allTags[i].id !== this.tags[j].id && this.tags[j].id === tag.id) {
                     this.removeNewTag.emit(tag);
+                    return;
                 }
             }
         }

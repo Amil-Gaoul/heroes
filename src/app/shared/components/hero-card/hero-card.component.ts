@@ -14,6 +14,7 @@ export class HeroCardComponent implements OnInit {
     @Input() tags: Tag[];
     @Output() emitTag: EventEmitter<Tag> = new EventEmitter<Tag>();
     @Output() emitLike: EventEmitter<Hero> = new EventEmitter<Hero>();
+    @Output() emitHero: EventEmitter<Hero> = new EventEmitter<Hero>();
     canVote: boolean;
     str: number;
     showMore: boolean;
@@ -45,6 +46,10 @@ export class HeroCardComponent implements OnInit {
 
     setTag(tag: Tag) {
         this.emitTag.emit(tag);
+    }
+
+    editHero() {
+        this.emitHero.emit(this.model);
     }
 
     like() {

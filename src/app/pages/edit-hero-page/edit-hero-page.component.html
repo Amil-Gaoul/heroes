@@ -1,0 +1,20 @@
+<div class="edit-hero">
+    <div class="grid">
+        <div class="row">
+            <div class="col col-1"></div>
+            <div class="col col-10">
+                <div class="edit-hero__container" *ngIf="hero && tags">
+                    <h3 class="edit-hero__title title title_center">Edit Hero - {{ hero.name }}</h3>
+                    <app-edit-hero
+                        [hero]="hero"
+                        [tags]="tags"
+                        (emitEditHero)="editHero($event)"
+                        (emitTag)="addNewTag($event)"
+                        (emitRemoveNewTag)="removeNewTag($event)">
+                    </app-edit-hero>
+                </div>
+            </div>
+            <div class="col col-1"></div>
+        </div>
+    </div>
+</div>

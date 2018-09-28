@@ -1,21 +1,25 @@
-import { Tag } from './../../shared/models/tag.model';
-import { Subscription } from 'rxjs/Subscription';
+import { FieldType } from './../../shared/models/Enums/field-type.enum';
+import { InputField } from './../../shared/models/input-field.model';
 import { TagsService } from './../../core/services/tags/tags.service';
-import { Hero } from './../../shared/models/hero.model';
 import { HeroesService } from './../../core/services/heroes/heroes.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { Hero } from './../../shared/models/hero.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Tag } from '../../shared/models/tag.model';
 
 @Component({
-    selector: 'app-hero-detail-page',
-    templateUrl: './hero-detail-page.component.html',
-    styleUrls: ['./hero-detail-page.component.scss']
+    selector: 'app-edit-hero-page',
+    templateUrl: './edit-hero-page.component.html',
+    styleUrls: ['./edit-hero-page.component.scss']
 })
-export class HeroDetailPageComponent implements OnInit, OnDestroy {
+export class EditHeroPageComponent implements OnInit, OnDestroy {
 
-    heroId: number;
     hero: Hero;
     tags: Tag[];
+    heroId: number;
+    isDisabledBtn: boolean;
+    fieldType: any;
 
     private subs: Subscription[] = [];
 
@@ -25,6 +29,7 @@ export class HeroDetailPageComponent implements OnInit, OnDestroy {
         private heroesService: HeroesService,
         private tagsService: TagsService
     ) {
+        this.fieldType = FieldType;
         this.subs.push(this.route.params.subscribe((params: Params) => {
             this.heroId = +params['id'];
         }));
@@ -41,7 +46,7 @@ export class HeroDetailPageComponent implements OnInit, OnDestroy {
 
     getHero() {
         this.subs.push(this.heroesService.loadHeroes().subscribe(heroes => {
-            if (heroes) {
+            if (heroes && this.heroId) {
                 this.hero = heroes.filter(hero => hero.id === this.heroId)[0];
                 if (!this.hero) {
                     this.router.navigate(['404']);
@@ -57,7 +62,20 @@ export class HeroDetailPageComponent implements OnInit, OnDestroy {
     }
 
     editHero(hero: Hero) {
-        this.router.navigate(['edit-hero', hero.id]);
+        console.log(hero);
+        this.subs.push(this.heroesService.editHero(hero).subscribe(hero => {
+            this.router.navigate(['hero', this.heroId]);
+        }));
+    }
+
+    addNewTag(tag: Tag) {
+        console.log(tag);
+        this.subs.push(this.tagsService.addTag(tag).subscribe());
+    }
+
+    removeNewTag(tag: Tag) {
+        console.log(tag);
+        this.subs.push(this.tagsService.deleteTag(tag).subscribe());
     }
 
 }

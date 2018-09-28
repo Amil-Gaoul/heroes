@@ -7,7 +7,7 @@
         </div>
         <div class="row dashboard__row" *ngFor="let heroes of customHeroes">
             <div class="col col-4" *ngFor="let hero of heroes">
-                <app-hero-card [model]="hero"></app-hero-card>
+                <app-hero-card [model]="hero" (emitHero)="editHero($event)"></app-hero-card>
             </div>
         </div>
     </div>
