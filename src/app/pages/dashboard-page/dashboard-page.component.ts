@@ -1,6 +1,7 @@
 import { HeroesService } from './../../core/services/heroes/heroes.service';
 import { Hero } from './../../shared/models/hero.model';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-dashboard-page',
@@ -12,7 +13,7 @@ export class DashboardPageComponent implements OnInit {
     heroes: Hero[];
     customHeroes: any;
 
-    constructor(private heroesService: HeroesService) { }
+    constructor(private heroesService: HeroesService, private router: Router) { }
 
     ngOnInit() {
         this.loadHeroes();
@@ -27,6 +28,10 @@ export class DashboardPageComponent implements OnInit {
                 console.log(this.customHeroes);
             }
         });
+    }
+
+    editHero(hero: Hero) {
+        this.router.navigate(['edit-hero', hero.id]);
     }
 
     private sortHeroes(heroes: Hero[]): Hero[] {

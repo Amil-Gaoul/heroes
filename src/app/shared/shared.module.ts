@@ -10,7 +10,9 @@ import { HeroCardComponent } from './components/hero-card/hero-card.component';
 import { AutocompleteFieldComponent } from './components/autocomplete-field/autocomplete-field.component';
 import { HeroesListComponent } from './components/heroes-list/heroes-list.component';
 import { CreateHeroComponent } from './components/create-hero/create-hero.component';
+import { EditHeroComponent } from './components/edit-hero/edit-hero.component';
 import { InputFieldComponent } from './components/input-field/input-field.component';
+import { TextareaFieldComponent } from './components/textarea-field/textarea-field.component';
 import { ButtonComponent } from './components/button/button.component';
 import { TagsListComponent } from './components/tags-list/tags-list.component';
 import { AddTagHeroComponent } from './components/add-tag-hero/add-tag-hero.component';
@@ -34,7 +36,9 @@ import { TagsFilterPipe } from './pipes/tags-filter/tags-filter.pipe';
         AutocompleteFieldComponent,
         HeroesListComponent,
         CreateHeroComponent,
+        EditHeroComponent,
         InputFieldComponent,
+        TextareaFieldComponent,
         ButtonComponent,
         TagsListComponent,
         AddTagHeroComponent,
@@ -49,7 +53,9 @@ import { TagsFilterPipe } from './pipes/tags-filter/tags-filter.pipe';
         AutocompleteFieldComponent,
         HeroesListComponent,
         CreateHeroComponent,
+        EditHeroComponent,
         InputFieldComponent,
+        TextareaFieldComponent,
         ButtonComponent,
         TagsListComponent,
         AddTagHeroComponent,

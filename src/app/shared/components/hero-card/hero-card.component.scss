@@ -1,3 +1,15 @@
+.hero-card__header {
+    position: relative;
+}
+
+.hero-card__edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: gray;
+    cursor: pointer;
+}
+
 .hero-card__image {
     background-size: cover;
 }

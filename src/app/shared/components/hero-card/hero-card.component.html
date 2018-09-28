@@ -1,19 +1,16 @@
 <mat-card class="hero-card">
-    <mat-card-header>
-        <div
-            mat-card-avatar
-            class="hero-card__image"
-            [ngStyle]="{ 'background-image': 'url(assets/images/heroes/' + model.id + '-thumbnail.jpg)' }"
-        ></div>
+    <mat-card-header class="hero-card__header">
+        <img mat-card-avatar class="hero-card-image" [src]="model.avatar">
         <mat-card-title>{{ model.name }}</mat-card-title>
         <mat-card-subtitle>{{ model.alterEgo }}</mat-card-subtitle>
+        <mat-icon class="hero-card__edit" (click)="editHero()">edit</mat-icon>
     </mat-card-header>
     <img mat-card-image [src]="'assets/images/heroes/' + model.id + '.jpg'" alt="Photo of a {{ model.name }}">
     <mat-card-content>
-        <div class="hero-card__text">
+        <div class="hero-card__text" *ngIf="model.synopsis">
             {{ model.synopsis | truncateText : str }}
             <label
-                *ngIf="model.synopsis.length >= str"
+                *ngIf="model.synopsis && model.synopsis.length >= str"
                 (click)="showMoreText()"
                 class="hero-card__show-more">{{ showMoreBtnText }}
             </label>

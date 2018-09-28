@@ -1,0 +1,15 @@
+<div [formGroup]="form" class="textarea-field">
+    <mat-form-field>
+        <textarea
+            matInput
+            matTextareaAutosize
+            matAutosizeMinRows=1
+            matAutosizeMaxRows=5
+            [id]="model.id"
+            [type]="model.type"
+            [placeholder]="model.placeholder"
+            [formControlName]="model.controlName"
+            [(ngModel)]="model.value">
+        </textarea>
+    </mat-form-field>
+</div>

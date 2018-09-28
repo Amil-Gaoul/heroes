@@ -1,5 +1,5 @@
 <div class="create-hero">
-    <form [formGroup]="formGroup">
+    <form [formGroup]="formGroup" *ngIf="inputs">
         <div
             class="create-hero__input"
             *ngFor="let input of inputs"
@@ -9,17 +9,23 @@
                 [model]="input"
                 [form]="formGroup">
             </app-input-field>
+            <app-textarea-field
+                *ngSwitchCase="fieldType.textarea"
+                [model]="input"
+                [form]="formGroup">
+            </app-textarea-field>
         </div>
         <div class="create-hero__tags">
             <app-add-tag-hero
                 class="create-hero__filter-tags"
-                *ngIf="tags"
+                *ngIf="tags && heroTags && heroTags.length"
                 (emitTags)="addTagsForHero($event)"
                 (emitTag)="createNewTag($event)"
                 (removeNewTag)="removeNewTag($event)"
-                [allTags]="tags">
+                [allTags]="tags"
+                [heroTags]="heroTags">
             </app-add-tag-hero>
         </div>
-        <app-button [text]="'Create'" [isDisabled]="!formGroup.valid" (emitClick)="createHero()"></app-button>
+        <app-button *ngIf="formGroup" [text]="'Edit'" [isDisabled]="!formGroup.valid" (emitClick)="editHero()"></app-button>
     </form>
 </div>
