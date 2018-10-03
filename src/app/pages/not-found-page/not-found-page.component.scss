@@ -1,0 +1,56 @@
+.not-found__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.not-found__content {
+    flex: 1 1 auto;
+    position: relative;
+    text-align: center;
+}
+
+// .not-found__titles-group {
+//     position: absolute;
+//     height: 100px;
+//     top: 0;
+//     left: 50%;
+//     transform: translateX(-50%);
+//     z-index: -1;
+// }
+
+.not-found__titles-group {
+    position: relative;
+    text-align: center;
+}
+
+.not-found__title {
+    color: #ececec;
+    font-weight: 900;
+    font-size: 276px;
+    margin: 0;
+}
+
+.not-found__sub-title {
+    position: absolute;
+    left: 0;
+    top: 35%;
+    width: 100%;
+    font-size: 46px;
+    color: #000;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+}
+
+.not-found__text {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    font-size: 16px;
+    color: #000;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-top: 15px;
+}

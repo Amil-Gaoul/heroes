@@ -1,6 +1,9 @@
 <button
     mat-raised-button
     color="primary"
+    [ngClass]="{
+        'primary_uppercase': caps
+    }"
     [disabled]="isDisabled"
     (click)="clickBtn()">{{ text }}
 </button>
