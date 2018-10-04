@@ -52,20 +52,17 @@ export class HeroesListPageComponent implements OnInit, OnDestroy {
         this.subs.push(this.tagsService.loadTags().subscribe(tags => {
             if (tags) {
                 this.tags = tags;
-                console.log(this.tags);
             }
         }));
     }
 
     createHero(hero: Hero) {
-        console.log(hero);
         this.subs.push(this.heroesService.createHero(hero).subscribe(data => {
             this.loadHeroes();
         }));
     }
 
     showHeroDetail(heroId: number) {
-        console.log(heroId);
         this.router.navigate(['hero', heroId]);
     }
 
@@ -85,8 +82,6 @@ export class HeroesListPageComponent implements OnInit, OnDestroy {
             this.tagsFilter.push(tag);
             this.tagsIds.push(tag.id);
         }
-        console.log(this.tagsIds);
-        console.log(this.tagsFilter);
     }
 
     removeFilterTags(tag: Tag) {

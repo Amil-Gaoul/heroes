@@ -73,7 +73,6 @@ export class EditHeroComponent implements OnInit {
     }
 
     removeNewTag(tag: Tag) {
-        console.log('remove tag');
         this.emitRemoveNewTag.emit(tag);
     }
 

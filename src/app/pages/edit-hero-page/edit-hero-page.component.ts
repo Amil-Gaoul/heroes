@@ -62,19 +62,16 @@ export class EditHeroPageComponent implements OnInit, OnDestroy {
     }
 
     editHero(hero: Hero) {
-        console.log(hero);
         this.subs.push(this.heroesService.editHero(hero).subscribe(hero => {
             this.router.navigate(['hero', this.heroId]);
         }));
     }
 
     addNewTag(tag: Tag) {
-        console.log(tag);
         this.subs.push(this.tagsService.addTag(tag).subscribe());
     }
 
     removeNewTag(tag: Tag) {
-        console.log(tag);
         this.subs.push(this.tagsService.deleteTag(tag).subscribe());
     }
 

@@ -53,7 +53,6 @@ export class HeroCardComponent implements OnInit {
     }
 
     like() {
-        console.log(this.model);
         this.emitLike.emit(this.model);
     }
 
