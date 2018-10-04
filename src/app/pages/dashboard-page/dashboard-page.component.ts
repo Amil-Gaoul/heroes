@@ -21,11 +21,9 @@ export class DashboardPageComponent implements OnInit {
 
     loadHeroes() {
         this.heroesService.loadHeroes().subscribe(data => {
-            console.log(data);
             if (data) {
                 const heroes = this.sortHeroes(data);
                 this.customHeroes = this.getRows(heroes);
-                console.log(this.customHeroes);
             }
         });
     }

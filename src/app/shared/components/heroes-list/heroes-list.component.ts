@@ -1,5 +1,5 @@
 import { Hero } from './../../models/hero.model';
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Tag } from '../../models/tag.model';
 
 @Component({
@@ -7,7 +7,7 @@ import { Tag } from '../../models/tag.model';
     templateUrl: './heroes-list.component.html',
     styleUrls: ['./heroes-list.component.scss']
 })
-export class HeroesListComponent implements OnInit, OnChanges {
+export class HeroesListComponent implements OnInit {
 
     @Input() model: Hero[];
     @Input() tags: Tag[];
@@ -21,13 +21,6 @@ export class HeroesListComponent implements OnInit, OnChanges {
 
     ngOnInit() {
         this.canVote = true;
-        console.log(this.model);
-    }
-
-    ngOnChanges(changes) {
-        if ('tagsIds' in changes) {
-            console.log(this.tagsIds);
-        }
     }
 
     setTag(tag: Tag) {
