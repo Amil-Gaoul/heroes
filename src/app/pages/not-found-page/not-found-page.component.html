@@ -1,3 +1,26 @@
-<p>
-  not-found-page works!
-</p>
+
+<div class="not-found">
+    <div class="grid">
+        <div class="row">
+            <div class="col col-12">
+                <div class="not-found__container">
+                    <div class="not-found__content">
+                        <div class="not-found__titles-group">
+                            <h1 class="not-found__title">404</h1>
+                            <h2 class="not-found__sub-title">We are sorry, Page not found!</h2>
+                        </div>
+                        <p class="not-found__text">
+                            The page you are looking for might have been removed had its name changed or is temporarily unavailable.
+                        </p>
+                        <app-button
+                            class="not-found__button"
+                            [text]="'Back to homepage'"
+                            [caps]="true"
+                            (emitClick)="goToHomepage()">
+                        </app-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,6 +9,7 @@ export class ButtonComponent implements OnInit {
 
     @Input() text: string;
     @Input() isDisabled: boolean;
+    @Input() caps: boolean;
     @Output() emitClick = new EventEmitter();
 
     constructor() { }
